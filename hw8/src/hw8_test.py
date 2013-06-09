@@ -19,6 +19,8 @@ def main():
     print "Overshoot: ", rlx.overshootFromDampingRatio(tf, 0.174)
     print "Damping Ratio: ", rlx.dampingRatioFromGain(tf, 164.5)
     print "Overshoot: ", rlx.overshootFromGain(tf, 164.5)
+    
+    """the damping factor, gain, pole locations, overshoot and frequency"""
 
 if __name__=="__main__":
     main()
