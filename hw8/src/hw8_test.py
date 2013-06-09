@@ -14,8 +14,8 @@ def main():
     denomS = map(float, sympy.Poly(S.as_numer_denom()[1], s).all_coeffs())
     tf = matlab.tf(numerS, denomS)
     
-    gain = 0.11
-    damping_ratio = 1.0
+    gain = 164.5
+    damping_ratio = 0.174
     
     print "provided test data :"
     print "system =", tf, "\ngain =", gain,"\ndamping ratio =",damping_ratio
@@ -29,8 +29,8 @@ def main():
     print "Frequency: ", rlx.frequencyFromGain(tf, gain)
     
     
-    """Things we were suppose to find: the damping factor, gain, pole locations, overshoot and frequency"""
-    print rlx.__doc__
+    #"""Things we were suppose to find: the damping factor, gain, pole locations, overshoot and frequency"""
+    #print rlx.__doc__
 
 if __name__=="__main__":
     main()
