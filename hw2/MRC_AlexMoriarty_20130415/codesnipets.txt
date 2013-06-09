@@ -1,0 +1,90 @@
+%
+% First I solved problem 1 using lookup tables and by hand. then varified with matlab.
+% Then I tried and failed to reproduce the results in python.
+% 
+% Here is my last session of bashing my head against ipython before I gave up. one problem is that I imported something that overrode exp to no longer be the symbolic version that I had been using before. so exp calls started returning errors before I realized I required sympy.exp. 
+% 
+% 
+
+In [75]: print In
+['', u"get_ipython().magic(u'pylab osx')", u'from sympy import *', u'init_printing(use_unicode=False, wrap_line=False, no_global=True)', u"x = Symbol('x')", u'integrate(x**2 + x + 1, x)', u'from sympy.abc import t, s, a', u'laplace_transform(t**a, t, s)', u'exp(1)', u'from numpy import *', u'exp(1)', u'y(t) = e', u'Heaviside(-3)', u'y = Function("y")(t)', u'y = exp(-2*t)*Heaviside(t) + exp(-3*t)*Heaviside(t)', u'import sympy', u'y = exp(-2*t)*Heaviside(t) + exp(-3*t)*Heaviside(t)', u'exp(t)', u's = Symbol("s")', u't = Symbol("t")', u'exp(t)', u'integrate(exp(-2*t)\n)', u'integrate(math.exp(-2*t)\n)', u'exp(1)', u'exp(t)', u'sympy.exp(1)', u'sympy.exp(3)', u'integrate(sympy.exp(-2*t)\n)', u"get_ipython().magic(u'pinfo integrate')", u'a', u'integrate(sympy.exp(-(s+a)*t))', u'integrate(sympy.exp(-(s+a)*t),t)', u'integrate(sympy.exp(-(s+a)*t),t, 0, inf)', u'integrate(sympy.exp(-(s+a)*t),t, 0, Inf)', u'integrate(sympy.exp(-(s+a)*t),t)', u'sympy.exp(-2)', u'exp(-2)', u'integrate(sympy.exp(-(s+a)*t),(t, 0, Inf))', u'integrate(sympy.exp(-(s+a)*t),(t, 0, Inf))', u'integrate(sympy.exp(-(s+a)*t),t,-Inf, 0)', u'integrate(sympy.exp(-(s+a)*t),t,-Inf, 0))', u'integrate(sympy.exp(-(s+a)*t),(t,-Inf,0))', u'y ', u'y = sympy.exp(-s*t)*sympy.exp(-2*t)', u'y', u'integrate(y,(t,0,Inf)\n)', u'y = sympy.exp(-s*t)*sympy.exp(-3*t)', u'integrate(y,(t,0,Inf))', u'y1 =  sympy.exp(-s*t)*sympy.exp(-3*t) + sympy.exp(-s*t)*sympy.exp(-2*t)', u'y1', u'integrate(y1,(t,0,Inf))', u'In[50]', u'In[0:50]', u'In', u'y1', u'import sympy.exp as exp', u'import sympy.exp() as exp', u'import sympy.exp() as exp()', u"get_ipython().system(u'clear ')", u'y(t)', u'y1)', u'y1', u'y2 = sympy.exp(-s*t)*sympy.exp(2*t)', u'y2', u'integrate(y1,(t,-Inf,0))', u'sympy.oo', u'integrate(y2,(t,-Inf,0))', u'y3 = sympy.exp(-s*t)*sympy.exp(2*t)', u'integrate(y2,(t,0,Inf))', u'y4 = sympy.exp(-s*t)*sympy.exp(-3*t)', u'integrate(y3,(t,-Inf,0))', u'integrate(y4,(t,-Inf,0))', u'y4', u'in', u'In', u'print In']
+
+
+%-- 2013-04-20 10:50 PM --%
+syms t z
+u(t) = heaviside(t)
+y = exp(-2*t)*u(t) + exp(-3*t)*u(t)
+laplace(y,t,z)
+y = exp(2*t)*u(t) + exp(-3*t)*u(-t)
+laplace(y,t,z)
+y = exp(2*t)*u(t) + exp(-3*t)*u(t)
+laplace(y,t,z)
+y = exp(-2*t)*u(t)
+laplace(y,t,z)
+y = exp(-3*t)*u(t)
+laplace(y,t,z)
+y = exp(-3*t)*u(-t)
+laplace(y,t,z)
+y = exp(-3*t)*u(t)
+laplace(y,t,z)
+y = exp(2*t)*u(-t)
+laplace(y,t,z)
+syms s
+X = 1 - (4/3)*(1/(s+1) + (1/3)*(1/(s-2))
+X = 1 - (4/3)*(1/(s+1)) + (1/3)*(1/(s-2))
+pretty(X)
+simplify(X)
+pretty(simplify(X))
+y
+y = -exp(2*t)*u(-t)
+laplace(y,t,z)
+plotpz(3,4,5)
+plotpz([-2,-1],[1],1)
+[p,z] = plotpz([-2,-1],[1],1)
+[p,z] = plotpz([1,5,6],[2,5],8)
+clc
+y = exp(-2*t)*u(t) + exp(-3*t)*u(t)
+laplace(y,t,z)
+syms x
+syms z
+laplace(y,t,z)
+simplify(ans)
+pretty(simplify(ans))
+pretty(ans)
+laplace(y,t,z)
+X = laplace(y,t,z)
+simplify(X)
+y = exp(-3*t)*u(t) + exp(2*t)*u(-t)
+X = laplace(y,t,z)
+y = exp(2*t)*u(t) + exp(-3*t)*u(-t)
+X = laplace(y,t,z)
+y1 = exp(-2*t)*u(t) + exp(-3*t)*u(t)
+y2 = exp(-3*t)*u(t) + exp(2*t)*u(-t)
+y3 = exp(2*t)*u(t) + exp(-3*t)*u(-t)
+X1 = laplace(y1,t,z)
+X2 = laplace(y2,t,z)
+X2 = laplace(y2,t,z);
+X3 = laplace(y3,t,z);
+X1
+latex(X1)
+latex(X2)
+latex(X3)
+X1
+z = s
+X1
+((z+2)+(z+3))/((z + 3)(z+2))
+((z+2)+(z+3))/((z + 3)*(z+2))
+pretty(ans)
+((z+2)+(z+3))/((z + 3)*(z+2))
+latex(ans)
+((z+2)+(z+3))/((z + 3)*(z+2))
+simply(ans)
+simplify(ans)
+
+
+%%% plotpz for MatLab came from matlab file exchange
+%---------------------------------------------------------------
+% copyright 1996, 2001, by John Buck, Michael Daniel, and Andrew Singer.
+% For use with the textbook "Computer Explorations in Signals and
+% Systems using MATLAB", Prentice Hall, 1997, 2002.
+%---------------------------------------------------------------
