@@ -14,11 +14,13 @@ def main():
     denomS = map(float, sympy.Poly(S.as_numer_denom()[1], s).all_coeffs())
     
     tf = matlab.tf(numerS, denomS)
-    print "Gain ", rlx.valuesFromDampingRatio(tf, 0.174)
+    print "Gain ", rlx.gainFromDampingRatio(tf, 0.174)
     print "Poles: ", rlx.polesFromTransferFunction(tf)
     print "Overshoot: ", rlx.overshootFromDampingRatio(tf, 0.174)
     print "Damping Ratio: ", rlx.dampingRatioFromGain(tf, 164.5)
     print "Overshoot: ", rlx.overshootFromGain(tf, 164.5)
+    print "Frequency: ", rlx.frequencyFromGain(tf, 164.5)
+    
     
     """the damping factor, gain, pole locations, overshoot and frequency"""
 

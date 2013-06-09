@@ -14,7 +14,7 @@ import numpy as np
 from math import exp,sqrt
 
 
-def valuesFromDampingRatio(transferFunction, dampingRatio):
+def gainFromDampingRatio(transferFunction, dampingRatio):
     minGainSample = 0.0
     spacing = 1000.0
     closerToMGS = False
@@ -66,6 +66,17 @@ def dampingRatioFromGain(transferFunction, gain):
             if data_point.imag > 0:
                 return np.sin(np.arctan(abs(-1*data_point.real / data_point.imag)))
     return damping_ratio
+
+def frequencyFromGain(transferFunction, gain):
+    data = matlab.rlocus(transferFunction, np.array([gain]))
+    frequency = None
+    for j in range(0, len(data[0][0])):
+        for i in range(0, len(data[0])):
+            data_point = data[0][i][j]
+            if data_point.imag > 0:
+                return np.sin(data_point.real**2 + data_point.imag**2)
+    return frequency
+
                     
 def overshootFromGain(transferFunction, gain):
     data = matlab.rlocus(transferFunction, np.array([gain]))
@@ -79,24 +90,49 @@ def overshootFromGain(transferFunction, gain):
     overshoot = 100*exp(exponent)
     return overshoot
 
+def frequencyFromGain(transferFunction, gain):
+    data = matlab.rlocus(transferFunction, np.array([gain]))
+    frequency = 0
+    for j in range(0, len(data[0][0])):
+        for i in range(0, len(data[0])):
+            data_point = data[0][i][j]
+            if data_point.imag > 0 :
+                frequency = np.sqrt(data_point.real**2 + data_point.imag**2)
+    return frequency   
 
 def main():
     print "Root Locus Extras"
     print "Methods to add functionality to control.matlab.rlocus"
     print "requires control.matlab package"
     print "suggested usage: import homework8.root_locus_extras as rlx"
-    s = sympy.Symbol("s")
-    S = 1 / ((s+1)*(s+2)*(s+10))
+    _s = sympy.Symbol("s")
+    _S = 1 / ((_s+1)*(_s+2)*(_s+10))
     
-    numerS = map(float, sympy.Poly(S.as_numer_denom()[0], s).all_coeffs()) 
-    denomS = map(float, sympy.Poly(S.as_numer_denom()[1], s).all_coeffs())
+    _numerS = map(float, sympy.Poly(_S.as_numer_denom()[0], _s).all_coeffs()) 
+    _denomS = map(float, sympy.Poly(_S.as_numer_denom()[1], _s).all_coeffs())
     
-    tf = matlab.tf(numerS, denomS)
-    print "Gain ", valuesFromDampingRatio(tf, 0.174)
-    print "Poles: ", polesFromTransferFunction(tf)
-    print "Overshoot: ", overshootFromDampingRatio(tf, 0.174)
-    print "Damping Ratio: ", dampingRatioFromGain(tf, 164.5)
-    print "Overshoot: ", overshootFromGain(tf, 164.5)
+    _tf = matlab.tf(_numerS, _denomS)
+    
+    _gain = 164.5
+    _damping_ratio = 0.174
+    
+    _gain = gainFromDampingRatio(_tf, _damping_ratio)
+    _poles = polesFromTransferFunction(_tf)
+    _overshoot = overshootFromDampingRatio(_tf, _damping_ratio)
+    _damping_ratio = dampingRatioFromGain(_tf, _gain)
+    
+    print "example: "
+    print "system = ", _tf
+    
+    print "Damping Ratio provided: ", _damping_ratio
+    print "Calculated values:"
+    
+    print "Gain: ", _gain
+    print "Poles: ", _poles
+    print "Overshoot: ", _overshoot
+    print "Damping Ratio: ", dampingRatioFromGain(_tf, _gain)
+    print "Overshoot: ", overshootFromGain(_tf, _gain)
+    print "Frequency:", frequencyFromGain(_tf, _gain)
 
 if __name__=="__main__":
     main()
