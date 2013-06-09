@@ -28,6 +28,7 @@ def main():
     
     
     """the damping factor, gain, pole locations, overshoot and frequency"""
+    print rlx.__doc__
 
 if __name__=="__main__":
     main()
