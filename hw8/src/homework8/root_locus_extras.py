@@ -105,12 +105,12 @@ def frequencyFromGain(transferFunction, gain):
     control.matlab.rlocus plot. 
     """
     data = matlab.rlocus(transferFunction, np.array([gain]))
-    frequency = None
+    frequency = 0
     for j in range(0, len(data[0][0])):
         for i in range(0, len(data[0])):
             data_point = data[0][i][j]
             if data_point.imag > 0:
-                return np.abs(data_point.real**2 + data_point.imag**2)
+                return np.sqrt(data_point.real**2 + data_point.imag**2)
     return frequency
 
                     
