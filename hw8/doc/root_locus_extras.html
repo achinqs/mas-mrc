@@ -1,0 +1,59 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module root_locus_extras</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>root_locus_extras</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/alex/workspace/mas-homework/mas-mrc/hw8/src/homework8/root_locus_extras.py">/Users/alex/workspace/mas-homework/mas-mrc/hw8/src/homework8/root_locus_extras.py</a></font></td></tr></table>
+    <p><tt>Root&nbsp;Locus&nbsp;Extras&nbsp;-&nbsp;Methods&nbsp;to&nbsp;add&nbsp;functionality&nbsp;to&nbsp;control.matlab.rlocus<br>
+&nbsp;<br>
+requires&nbsp;control.matlab&nbsp;package<br>
+suggested&nbsp;usage:&nbsp;import&nbsp;homework8.root_locus_extras&nbsp;as&nbsp;rlx<br>
+&nbsp;<br>
+see/run&nbsp;root_locus_extras.<a href="#-main">main</a>()&nbsp;for&nbsp;an&nbsp;example<br>
+&nbsp;<br>
+Created&nbsp;on&nbsp;Jun&nbsp;9,&nbsp;2013<br>
+@author:&nbsp;Robin<br>
+@author:&nbsp;Alex<br>
+@author:&nbsp;David</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="control.matlab.html">control.matlab</a><br>
+</td><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="sympy.html">sympy</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-dampingRatioFromGain"><strong>dampingRatioFromGain</strong></a>(transferFunction, gain)</dt><dd><tt>Finds&nbsp;and&nbsp;returns&nbsp;DampingRatio&nbsp;given&nbsp;a&nbsp;control.matlab.tf&nbsp;transferFunction&nbsp;and&nbsp;gain</tt></dd></dl>
+ <dl><dt><a name="-frequencyFromGain"><strong>frequencyFromGain</strong></a>(transferFunction, gain)</dt><dd><tt>Returns&nbsp;frequency&nbsp;from&nbsp;given&nbsp;control.matlab.tf&nbsp;transferFunction&nbsp;and&nbsp;gain.<br>
+&nbsp;<br>
+frequency&nbsp;was&nbsp;observed&nbsp;to&nbsp;equal&nbsp;to&nbsp;the&nbsp;distance&nbsp;from&nbsp;origin&nbsp;to&nbsp;a&nbsp;point&nbsp;on&nbsp;the&nbsp;<br>
+control.matlab.rlocus&nbsp;plot.</tt></dd></dl>
+ <dl><dt><a name="-gainFromDampingRatio"><strong>gainFromDampingRatio</strong></a>(transferFunction, dampingRatio)</dt><dd><tt>Returns&nbsp;gain&nbsp;found&nbsp;from&nbsp;a&nbsp;given&nbsp;control.matlab.tf&nbsp;transferFunction&nbsp;and&nbsp;dampingRatio<br>
+&nbsp;<br>
+By&nbsp;sampling&nbsp;along&nbsp;matlab.rlocus&nbsp;plot.&nbsp;Converges&nbsp;on&nbsp;an&nbsp;area&nbsp;of&nbsp;the&nbsp;plot&nbsp;by&nbsp;taking&nbsp;smaller&nbsp;sized<br>
+samples&nbsp;(defined&nbsp;by&nbsp;variable&nbsp;'spacing')&nbsp;in&nbsp;each&nbsp;iteration&nbsp;until&nbsp;spacing&nbsp;=&nbsp;0.1&nbsp;,&nbsp;thus&nbsp;the&nbsp;gain&nbsp;will&nbsp;<br>
+only&nbsp;ever&nbsp;be&nbsp;within&nbsp;0.1</tt></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt></dl>
+ <dl><dt><a name="-overshootFromDampingRatio"><strong>overshootFromDampingRatio</strong></a>(transferFunction, dampingRatio)</dt><dd><tt>returns&nbsp;overshoot&nbsp;given&nbsp;a&nbsp;control.matlab.tf&nbsp;transferFunction&nbsp;and&nbsp;a&nbsp;dampingRatio<br>
+&nbsp;<br>
+Value&nbsp;is&nbsp;calculated&nbsp;from&nbsp;defined&nbsp;equation.</tt></dd></dl>
+ <dl><dt><a name="-overshootFromGain"><strong>overshootFromGain</strong></a>(transferFunction, gain)</dt><dd><tt>Finds&nbsp;overshoot&nbsp;of&nbsp;control.matlab.tf&nbsp;transferFunction&nbsp;given&nbsp;gain.</tt></dd></dl>
+ <dl><dt><a name="-polesFromTransferFunction"><strong>polesFromTransferFunction</strong></a>(transferFunction)</dt><dd><tt>Finds&nbsp;and&nbsp;returns&nbsp;an&nbsp;array&nbsp;of&nbsp;poles&nbsp;given&nbsp;a&nbsp;control.matlab.tf&nbsp;transferFunction<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;wrapping&nbsp;control.pzmap.pzmap()&nbsp;and&nbsp;discarding&nbsp;zero&nbsp;information.</tt></dd></dl>
+</td></tr></table>
+</body></html>

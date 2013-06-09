@@ -17,8 +17,6 @@ from control import matlab
 import sympy
 from control.pzmap import pzmap 
 import numpy as np
-from math import exp,sqrt
-
 
 def gainFromDampingRatio(transferFunction, dampingRatio):
     """
@@ -78,8 +76,8 @@ def overshootFromDampingRatio(transferFunction, dampingRatio):
     """
     overshoot = 0
     if abs(1.0-dampingRatio**2) > 0:
-        exponent = -1.0*dampingRatio*( np.pi/sqrt(1.0 - dampingRatio**2))
-        overshoot = 100*exp(exponent)
+        exponent = -1.0*dampingRatio*( np.pi/np.sqrt(1.0 - dampingRatio**2))
+        overshoot = 100*np.exp(exponent)
     return overshoot
     
 def dampingRatioFromGain(transferFunction, gain):
@@ -128,8 +126,8 @@ def overshootFromGain(transferFunction, gain):
             if data_point.imag > 0 :
                 dampingRatio = np.sin(np.arctan(abs(data_point.real / data_point.imag)))
     if abs(1-dampingRatio**2) > 0:
-        exponent = -1*dampingRatio*( np.pi/sqrt(1 - dampingRatio**2))
-        overshoot = 100*exp(exponent)
+        exponent = -1*dampingRatio*( np.pi/np.sqrt(1 - dampingRatio**2))
+        overshoot = 100*np.exp(exponent)
     return overshoot
 
 def main():
