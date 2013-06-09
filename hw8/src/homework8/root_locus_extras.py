@@ -53,8 +53,10 @@ def polesFromTransferFunction(transferFunction) :
     return poles
     
 def overshootFromDampingRatio(transferFunction, dampingRatio):
-    exponent = -1*dampingRatio*( np.pi/sqrt(1 - dampingRatio**2))
-    overshoot = 100*exp(exponent)
+    overshoot = 0
+    if abs(1.0-dampingRatio**2) > 0:
+        exponent = -1.0*dampingRatio*( np.pi/sqrt(1.0 - dampingRatio**2))
+        overshoot = 100*exp(exponent)
     return overshoot
     
 def dampingRatioFromGain(transferFunction, gain):
@@ -70,8 +72,10 @@ def dampingRatioFromGain(transferFunction, gain):
 def frequencyFromGain(transferFunction, gain):
     data = matlab.rlocus(transferFunction, np.array([gain]))
     frequency = None
+    print len(data)
     for j in range(0, len(data[0][0])):
         for i in range(0, len(data[0])):
+            print "j = ", j, "i = ", i
             data_point = data[0][i][j]
             if data_point.imag > 0:
                 return np.sin(data_point.real**2 + data_point.imag**2)
@@ -80,25 +84,17 @@ def frequencyFromGain(transferFunction, gain):
                     
 def overshootFromGain(transferFunction, gain):
     data = matlab.rlocus(transferFunction, np.array([gain]))
-    dampingRatio = 0
+    dampingRatio = 0.0
+    overshoot = 0.0
     for j in range(0, len(data[0][0])):
         for i in range(0, len(data[0])):
             data_point = data[0][i][j]
             if data_point.imag > 0 :
                 dampingRatio = np.sin(np.arctan(abs(-1*data_point.real / data_point.imag)))
-    exponent = -1*dampingRatio*( np.pi/sqrt(1 - dampingRatio**2))
-    overshoot = 100*exp(exponent)
+    if abs(1-dampingRatio**2) > 0:
+        exponent = -1*dampingRatio*( np.pi/sqrt(1 - dampingRatio**2))
+        overshoot = 100*exp(exponent)
     return overshoot
-
-def frequencyFromGain(transferFunction, gain):
-    data = matlab.rlocus(transferFunction, np.array([gain]))
-    frequency = 0
-    for j in range(0, len(data[0][0])):
-        for i in range(0, len(data[0])):
-            data_point = data[0][i][j]
-            if data_point.imag > 0 :
-                frequency = np.sqrt(data_point.real**2 + data_point.imag**2)
-    return frequency   
 
 def main():
     print "Root Locus Extras"
