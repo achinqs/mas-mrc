@@ -15,17 +15,16 @@ from math import exp,sqrt
 
 
 def valuesFromDampingRatio(transferFunction, dampingRatio):
-    minGainSample = 0
-    spacing = 1000
+    minGainSample = 0.0
+    spacing = 1000.0
     closerToMGS = False
     gainFound = False
-    slopeOfDampingRatioLine = np.abs(np.tan(np.arcsin(dampingRatio)))
-    
+    slopeOfDampingRatioLine = abs(sympy.tan(sympy.asin(dampingRatio)))
     while not gainFound :
-        data = matlab.rlocus(transferFunction, np.array([minGainSample,minGainSample + (spacing),minGainSample + (2*spacing),
-                                minGainSample + (3*spacing),minGainSample + (4*spacing),minGainSample + (5*spacing),
-                                minGainSample + (6*spacing),minGainSample + (7*spacing),minGainSample + (8*spacing),
-                                minGainSample + (9*spacing),minGainSample + (10*spacing)]))
+        data = matlab.rlocus(transferFunction, np.array([minGainSample,minGainSample + (1.0*spacing),minGainSample + (2.0*spacing),
+                                minGainSample + (3.0*spacing),minGainSample + (4.0*spacing),minGainSample + (5.0*spacing),
+                                minGainSample + (6.0*spacing),minGainSample + (7.0*spacing),minGainSample + (8.0*spacing),
+                                minGainSample + (9.0*spacing),minGainSample + (10.0*spacing)]))        
         for j in range(0, len(data[0][0])):
             for i in range(1, len(data[0])) :
                 data_point = data[0][i][j]
@@ -43,13 +42,14 @@ def valuesFromDampingRatio(transferFunction, dampingRatio):
             gainFound = True
         else :
             spacing = spacing / 10
+    ## End While Loop
     if closerToMGS :
         return minGainSample
     else :
         return minGainSample + 0.1
 
 def polesFromTransferFunction(transferFunction) :
-    poles, zeros = pzmap(transferFunction, True)
+    poles, _ = pzmap(transferFunction, True)
     return poles
     
 def overshootFromDampingRatio(transferFunction, dampingRatio):
