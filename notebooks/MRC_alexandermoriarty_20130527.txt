@@ -1,0 +1,5 @@
+NAME: alexander moriarty
+ASSIGNMENT TIMES:
+000: 00120
+001: 00060
+002: 00060
