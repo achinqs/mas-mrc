@@ -60,30 +60,39 @@ sl_data = l_data[l_data[:,3].argsort()]
 
 # plot the labeled data and color code by label
 x, y, z, l = sl_data.T
-ax.scatter(x,y,z, c=l.astype(np.float))
+#ax.scatter(x,y,z, c=l.astype(np.float))
 
 # find indices to split data, and group the data by labels
 split_at = sl_data[:,3].searchsorted(np.unique(km.labels_)+1)
 grouped_data = np.split(sl_data, split_at)
 
 # for each group of data 
-for group in np.arange(len(grouped_data)-1):
+for group in range(len(grouped_data)-1):
     # create the covariance matrix C
     C = np.cov(grouped_data[group][:,0:3].T)
     # and obtain the eigenvalues and eigenvectors of C
     w, v = LA.eig(C)
     # the normal vector is eigenvector corresponding to lowest eigenvalue
-    norm = v[np.argmin(w)]
+    norm = v[:,np.argmin(w)]
+    print '#######---',group,'---######'
+    #print C
+    #print v
+    #print w
+    print "N", norm
+    major = v[:,np.argmax(w)]
+    print "M", major    
     
     # from the centre of each cluster, find endpoints of scaled normal vector
     i, j, k = km.cluster_centers_[group,:]
+    ax.text(i,j,k, str(group))
     xs = [i,i+norm[0]*ARROW_SCALE]
     ys = [j,j+norm[1]*ARROW_SCALE]
     zs = [k,k+norm[2]*ARROW_SCALE]
     
     # Plot the normal vectors using fancy function from stack overflow.
-    a = Arrow3D(xs, ys, zs, mutation_scale=40, lw=1, arrowstyle="-|>", color="k")
-    ax.add_artist(a)
+    if norm[2] > 0.9:
+        a = Arrow3D(xs, ys, zs, mutation_scale=40, lw=1, arrowstyle="-|>", color="k")
+        ax.add_artist(a)
 
 #set the labels
 ax.set_xlabel('X Label')
