@@ -1,0 +1,93 @@
+What is the general solution?
+    -> Two parts, Homogenious, inhomogenious
+    -> Sum two parts to get general solution.
+
+What is the particular solution?
+    ( what is an actual solution? )
+    -> The general solution with constants solved for initial conditions. 
+
+What are the implications of feedback linearlization?
+    It is a technique to enable solving non linear systems
+
+Is it possible to analize higher order systems with 
+
+>> May be best to ask for definitions.
+Prove this function L is a Linear operater
+
+What is a boundry value problem?
+    Unknown. It was not covered.
+
+Consider a robot with a laser scaner with a box in a room. 
+How can x an y coordinates of the box in the laser coordinates be used to find the 
+
+
+Can an inhomegenous system be solved using seperation of variables.
+    Just provide one example and then Answer is Yes.
+
+Can a system which is overdamped have overshoot.
+    No.
+
+What are two methods to calculate the Closed Loope (CL) transfer function.
+    -> Block Algebra
+    -> Block transformations?? It's the same?
+
+SomeQuestion on being locally unique.
+
+Is it possible to calculate Kp, Kd, Ki mathmatically?
+    -> Yes. With required specifications it is possible.
+
+What are basic methods of analytically solving ODEs
+    -> They are on slides, 4 or 5 methods, but Integrating Factors
+
+Can we say that a system is not stable if cannot prove it has a Layponavo function?
+
+More questions:
+
+Is there a method for guessing solution to an ODE?
+Is there a method for solving integrals in closed form?
+Finding a solution to an ODE is nothing other than finding an integral in closed form.
+Answer: No.
+
+What kind of compensator to add to control the overshoot.
+    Kp should be less, Ki should be less, Kd should be higher?
+    --> What happens to system if Ki Kd and Kp are varied : create table
+
+Give the important properties of the Laplace transform:
+    Most important: Linearity
+    Final value theorem 
+
+Solve:
+    Inhomogenous equation
+
+How can the pure translation of a coordinate frame to another be described in homogenous coordinates?
+    Tf = [R|t] add bottom row [0 0 0 | 1], R is I
+
+How can the linear compensator ...?
+How to choose a non linear compensator to build a linear controler?
+    If possible choose one to make it linear feedback..
+
+What are the advantages of PD control?
+    Faster rise time.
+
+In a multi variable ODE do the variables need to be intependant? 
+    independancy undefined in this sense.
+
+How to Laplace and Fourier transforms relate?
+    It's when the real part is equal to zero.. 
+
+[R^t | -R t ] ^ -1 is the inverse of a Transformation matrix
+[ 0  |   1  ] 
+
+[R | t]
+[0 | 1]
+
+How can we map/transform an ODEs of Higher order to a Frist Order system
+    substitution.
+
+Whats the difference between a positive definate function and a positive semi definate function
+    Semi definate have multiple zeros. Positive function, all values are positive. definate function, there is only one zero. Semi definate function, there are multiple definations. 
+
+Controllers: Because we did lots of them.
+ODEs: there are rigid definitions
+Frames: there are rigit definitions
+
