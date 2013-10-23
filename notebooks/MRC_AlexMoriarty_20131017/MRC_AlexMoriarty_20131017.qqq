@@ -1,4 +1,6 @@
-NAME: AlexMoriarty
-ASSIGNMENT TIMES:
-000: 00360
-001: 00060
+q1. When checking if the planes found are possible flat surfaces, is it enough to see if the normal vector is near vertical, or should we have also taken into account some sort of mean square error?
+a1. Probably should take into account some form of mean square error 
+q2. The eigen vector which corresponds to the lowest eigenvalue is the surface norm, what is the eigen vector which corresponds to the highest eigenvalue?
+a2. The major axis
+q3. And what does the middle eigenvalue's corresponding eigenvector represent?
+a3. I don't actually know, proably the minor axis. 
