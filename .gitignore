@@ -2,3 +2,5 @@ __MACOSX
 .project
 .pydevproject
 *.pyc
+
+.ipynb_checkpoints
