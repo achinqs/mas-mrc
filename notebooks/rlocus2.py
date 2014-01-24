@@ -58,8 +58,8 @@ def gain_at(tf, point):
     return numpy.product(pole_lengths) / numpy.product(zero_lengths)
 
 
-def damping_coefficient_at(tf, point):
-    return numpy.cos(numpy.arctan2(point.imag, point.real))
+def damping_coefficient_at(point):
+    return -numpy.cos(numpy.arctan2(point.imag, point.real))
 
 
 def undamped_natural_frequency_at(point):
@@ -94,7 +94,7 @@ def rlocusfind(system_or_tf, *args, **kwargs):
         pole = complex(pole_x, pole_y)
         
         gain = gain_at(system_or_tf, pole)
-        damping_coefficient = damping_coefficient_at(system_or_tf, pole)
+        damping_coefficient = damping_coefficient_at(pole)
         overshoot = overshoot_from_damping_coefficient(damping_coefficient)
         natural_frequency = undamped_natural_frequency_at(pole)
 
@@ -144,7 +144,7 @@ def rlocusfind(system_or_tf, *args, **kwargs):
         artificial_pick_event = SynthesizedEvent( initial_pick, None )
         
     for col in rl.T:
-        ax.plot(numpy.real(col), numpy.imag(col), plot_str, picker=1)
+        ax.plot(numpy.real(col), numpy.imag(col), plot_str, picker=3)
 
     ax.grid(True)    
     ax.set_xlabel('Real')
